@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 import com.easyvalid.cn.util.ValidConstant;
 
-
 /**
  * 验证注解
  * 
@@ -32,7 +31,7 @@ public @interface Valid {
 	 * 验证失败后返回的消息
 	 */
 	String desc() default ValidConstant.DEFAULTVALIDDESC;
-	
+
 	/**
 	 * 校验顺序
 	 */

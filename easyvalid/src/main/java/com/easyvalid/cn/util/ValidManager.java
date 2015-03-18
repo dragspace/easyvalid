@@ -162,8 +162,9 @@ public class ValidManager {
 									+ clazz.getName() + " 属性：" + proName);
 				}
 				ivalid = new RegexValid(proName, valid.desc(), valid.value());
-			}else if(Regular.BMETHOD.equals(regular)){
-				ivalid = new BeanMethodValid(proName, valid.desc(), valid.value());
+			} else if (Regular.BMETHOD.equals(regular)) {
+				ivalid = new BeanMethodValid(proName, valid.desc(), valid
+						.value());
 			}
 		}
 

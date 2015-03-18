@@ -12,5 +12,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface Valids {
+	/**
+	 * 多个注解验证
+	 * @return
+	 */
 	Valid[] value();
 }

@@ -5,7 +5,8 @@ import com.easyvalid.cn.bean.ValidErrorBean;
 public interface IValid {
 	/**
 	 * 
-	 * @param srcObj 原始对象
+	 * @param srcObj
+	 *            原始对象
 	 * @param proValue
 	 * @return
 	 */
