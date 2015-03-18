@@ -27,7 +27,7 @@ public class ValidManager {
 	 * 缓存验证信息
 	 */
 	@SuppressWarnings("unchecked")
-	private static final Map<Class, List<FieldAndIValid>> cacheValid = new HashMap<Class, List<FieldAndIValid>>();
+	private static final Map<Class, List<FieldAndIValid>> CACHEVALID = new HashMap<Class, List<FieldAndIValid>>();
 
 	/**
 	 * 检测所有属性，并且返回所有属性的验证不通过信息
@@ -96,14 +96,14 @@ public class ValidManager {
 	 */
 	private static List<FieldAndIValid> getCacheValid(Object o) {
 		Class<?> clazz = o.getClass();
-		List<FieldAndIValid> favList = cacheValid.get(clazz);
+		List<FieldAndIValid> favList = CACHEVALID.get(clazz);
 
 		if (favList == null) {
 			synchronized (clazz) {
-				favList = cacheValid.get(clazz);
+				favList = CACHEVALID.get(clazz);
 				if (favList == null) {
 					initClassToCahce(clazz);
-					favList = cacheValid.get(clazz);
+					favList = CACHEVALID.get(clazz);
 				}
 
 			}
@@ -131,7 +131,7 @@ public class ValidManager {
 			}
 		}
 		// valid order sort
-		Collections.sort(cacheValid.get(clazz),
+		Collections.sort(CACHEVALID.get(clazz),
 				new Comparator<FieldAndIValid>() {
 					@Override
 					public int compare(FieldAndIValid o1, FieldAndIValid o2) {
@@ -172,10 +172,10 @@ public class ValidManager {
 		}
 
 		if (ivalid != null) {
-			List<FieldAndIValid> favList = cacheValid.get(clazz);
+			List<FieldAndIValid> favList = CACHEVALID.get(clazz);
 			if (favList == null) {
 				favList = new ArrayList<FieldAndIValid>();
-				cacheValid.put(clazz, favList);
+				CACHEVALID.put(clazz, favList);
 			}
 			favList.add(new FieldAndIValid(clazz, field, ivalid, valid));
 		}
