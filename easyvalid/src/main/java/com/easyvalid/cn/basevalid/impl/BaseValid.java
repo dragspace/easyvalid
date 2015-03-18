@@ -14,9 +14,9 @@ public abstract class BaseValid {
 
 		this.proName = proName;
 		if (desc == null) {
-			desc = ValidConstant.DEFAULTVALIDDESC;
+			this.desc = ValidConstant.DEFAULTVALIDDESC;
 		}
-		this.desc = desc.replace("#{pro}", proName);
+		this.desc = this.desc.replace("#{pro}", proName);
 	}
 
 	public ValidErrorBean getValidErrorBean(Object value) {

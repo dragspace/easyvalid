@@ -23,6 +23,9 @@ import com.easyvalid.cn.bean.ValidErrorBean;
 
 public class ValidManager {
 
+	/**
+	 * 缓存验证信息
+	 */
 	@SuppressWarnings("unchecked")
 	private static final Map<Class, List<FieldAndIValid>> cacheValid = new HashMap<Class, List<FieldAndIValid>>();
 
