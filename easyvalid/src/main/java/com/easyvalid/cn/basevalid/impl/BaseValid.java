@@ -26,7 +26,7 @@ public abstract class BaseValid {
 		} else {
 			tempValue = value.toString();
 		}
-		String desc = this.desc.replace("#{value}", tempValue);
-		return new ValidErrorBean(proName, desc);
+		String description = this.desc.replace("#{value}", tempValue);
+		return new ValidErrorBean(proName, description);
 	}
 }
