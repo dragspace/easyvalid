@@ -21,4 +21,4 @@
 bean必须有getXX方法，取值通过getXX方式取，验证过一次后 这个类的验证信息会缓存
 
 
-详细请看 com.easyvalid.test.TestBean 以及 com.easyvalid.test.TestValid 这个测试！！！
+详细请看 com.easyvalid.test.TestBean 以及 com.easyvalid.test.TestValid 这个测试！！
