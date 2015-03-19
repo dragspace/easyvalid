@@ -1,15 +1,18 @@
 package com.easyvalid.test.springvalidbean;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * 测试验证类
  * @author Administrator
  *
  */
 public class SpringBeanValid {
-
+	private static final Log LOG = LogFactory.getLog(SpringBeanValid.class);
 	public SpringBeanValid() {
 		super();
-		System.out.println("验证class初始化");
+		LOG.info("--------------------验证class SpringBeanValid 初始化-------------------------");
 	}
 
 	/**
