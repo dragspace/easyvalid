@@ -1,6 +1,7 @@
 package com.easyvalid.cn.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,9 +20,8 @@ public class ValidManager {
     /**
      * 缓存验证信息
      */
-    @SuppressWarnings("unchecked")
-    private static final Map<Class, List<FieldAndIValid>> CACHEVALID =
-            new HashMap<Class, List<FieldAndIValid>>();
+    private static final Map<Class<?>, List<FieldAndIValid>> CACHEVALID =
+            new HashMap<Class<?>, List<FieldAndIValid>>();
 
     /**
      * 检测所有属性，并且返回所有属性的验证不通过信息
@@ -33,15 +33,24 @@ public class ValidManager {
 
         List<FieldAndIValid> favList = getCacheValid(o);
         List<ValidErrorBean> validAllErrorList = null;
+        Map<Method, Boolean> isValidedProperty = new HashMap<Method, Boolean>();
         for (FieldAndIValid fav : favList) {
-            ValidErrorBean veb = valid(o, fav);
-            if (veb != null) {
-                if (validAllErrorList == null) {
-                    validAllErrorList = new ArrayList<ValidErrorBean>();
+            // 阻止一个字段校验失败后多次校验
+            if (isValidedProperty.containsKey(fav.getGetMethod())) {
+                continue;
+            } else {
+                ValidErrorBean veb = valid(o, fav);
+                if (veb != null) {
+                    if (validAllErrorList == null) {
+                        validAllErrorList = new ArrayList<ValidErrorBean>();
+                    }
+                    validAllErrorList.add(veb);
+                    // 校验失败后，将验证字段标记为已验证
+                    isValidedProperty.put(fav.getGetMethod(), true);
                 }
-                validAllErrorList.add(veb);
             }
         }
+
         return validAllErrorList;
     }
 
@@ -109,12 +118,11 @@ public class ValidManager {
      * 
      * @param clazz
      */
-    @SuppressWarnings("unchecked")
-    private static void initClassToCahce(Class clazz) {
+    private static void initClassToCahce(Class<?> clazz) {
 
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
-            setIValidCache(clazz, field,  field.getAnnotation(Valid.class));
+            setIValidCache(clazz, field, field.getAnnotation(Valid.class));
             Valids valids = field.getAnnotation(Valids.class);
             if (valids != null) {
                 for (Valid valid : valids.value()) {
@@ -138,8 +146,7 @@ public class ValidManager {
      * @param clazz
      * @param valid
      */
-    @SuppressWarnings("unchecked")
-    private static void setIValidCache(Class clazz, Field field, Valid valid) {
+    private static void setIValidCache(Class<?> clazz, Field field, Valid valid) {
         if (valid == null) {
             return;
         }

@@ -10,7 +10,7 @@ import com.easyvalid.cn.util.ValidConstant;
 /**
  * 验证注解
  * 
- * @author Administrator
+ * @author xiaoruihu
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)

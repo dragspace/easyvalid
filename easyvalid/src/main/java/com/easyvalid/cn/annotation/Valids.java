@@ -7,14 +7,16 @@ import java.lang.annotation.Target;
 
 /**
  * 一个字段上可以有多个验证注解
- * @author Administrator
+ * 
+ * @author xiaoruihu
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
+@Target( {ElementType.FIELD})
 public @interface Valids {
-	/**
-	 * 多个注解验证
-	 * @return
-	 */
-	Valid[] value();
+    /**
+     * 多个注解验证
+     * 
+     * @return
+     */
+    Valid[] value();
 }

@@ -4,6 +4,14 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+/**
+ * 
+ * <p>
+ * Description:	spring的工具类 用来获取bean
+ * </p>
+ * @author xiaoruihu
+ * @date 2015-3-20 下午07:04:45
+ */
 public class SpringContextUtil implements ApplicationContextAware {
 
 	private static ApplicationContext applicationContext;

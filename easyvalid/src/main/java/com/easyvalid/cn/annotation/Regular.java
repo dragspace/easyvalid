@@ -18,7 +18,7 @@ public enum Regular {
     ISBLANK() {
         @Override
         public IValid getValid(Class<?> clazz, Field field, Valid valid) {
-            return new IsBlankValid(field.getName(), valid.desc());
+            return new IsBlankValid(clazz, field, valid);
         }
     },
     /**
@@ -27,7 +27,7 @@ public enum Regular {
     ISNULL() {
         @Override
         public IValid getValid(Class<?> clazz, Field field, Valid valid) {
-            return new IsNullValid(field.getName(), valid.desc());
+            return new IsNullValid(clazz, field, valid);
         }
     },
     /**
@@ -40,7 +40,7 @@ public enum Regular {
                 throw new RuntimeException("@valid 的regular属性为REG， 但是他的value 为空, class : "
                         + clazz.getName() + " 属性：" + field.getName());
             }
-            return new RegexValid(field.getName(), valid.desc(), valid.value());
+            return new RegexValid(clazz, field, valid);
         }
     },
     /**
@@ -49,7 +49,7 @@ public enum Regular {
     BMETHOD() {
         @Override
         public IValid getValid(Class<?> clazz, Field field, Valid valid) {
-            return new BeanMethodValid(field.getName(), valid.desc(), valid.value());
+            return new BeanMethodValid(clazz, field, valid);
         }
     };
 

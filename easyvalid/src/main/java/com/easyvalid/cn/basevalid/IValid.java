@@ -2,6 +2,14 @@ package com.easyvalid.cn.basevalid;
 
 import com.easyvalid.cn.bean.ValidErrorBean;
 
+/**
+ * 
+ * <p>
+ * Description:	验证属性接口
+ * </p>
+ * @author xiaoruihu
+ * @date 2015-3-20 下午07:01:09
+ */
 public interface IValid {
     /**
      * 
