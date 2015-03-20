@@ -5,6 +5,11 @@ import com.easyvalid.cn.annotation.Valid;
 import com.easyvalid.cn.annotation.Valids;
 
 public class TestBean {
+    
+    /**
+     * 不进行验证
+     */
+    private String none;
 
 	@Valid(regular = Regular.ISBLANK, desc = "#{pro}不能为空", order = 10)
 	private String name;
@@ -21,7 +26,15 @@ public class TestBean {
 	@Valid(regular = Regular.BMETHOD, value = "springBeanValid.validSpring", desc = "#{pro}的值只能为Spring")
 	private String spring;
 
-	public String getSpring() {
+	public String getNone() {
+        return none;
+    }
+
+    public void setNone(String none) {
+        this.none = none;
+    }
+
+    public String getSpring() {
 		return spring;
 	}
 
