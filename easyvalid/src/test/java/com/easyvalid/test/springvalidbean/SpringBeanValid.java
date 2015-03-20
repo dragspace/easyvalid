@@ -23,7 +23,7 @@ public class SpringBeanValid {
 	 * @return
 	 */
 	public boolean validAge(Object srcObj, Object value) {
-		// TestBean tb = (TestBean)srcObj;
+	 // srcObj is TestBean;
 		if (value == null) {
 			return false;
 		}
@@ -39,7 +39,7 @@ public class SpringBeanValid {
 	 * @return
 	 */
 	public boolean validSpring(Object srcObj, Object value) {
-		// TestBean tb = (TestBean)srcObj;
+		// srcObj is TestBean;
 		return "Spring".equals(value);
 	}
 

@@ -3,8 +3,9 @@ package com.easyvalid.cn.bean;
 /**
  * 
  * <p>
- * Description:验证失败后 返回该实体	
+ * Description:验证失败后 返回该实体
  * </p>
+ * 
  * @author xiaoruihu
  * @date 2015-3-20 下午07:04:23
  */

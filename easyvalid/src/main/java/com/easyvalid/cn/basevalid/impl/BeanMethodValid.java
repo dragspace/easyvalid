@@ -14,6 +14,8 @@ public class BeanMethodValid extends BaseValid implements IValid {
     private Object bean;
     private Method validMethod;
     private String methodStr;
+    
+    private static final String PARAM = "(Object srcObj,Object value)";
 
     public BeanMethodValid(Class<?> clazz, Field field, Valid valid) {
         super(clazz, field, valid);
@@ -34,12 +36,12 @@ public class BeanMethodValid extends BaseValid implements IValid {
                             new Class[] {Object.class, Object.class});
         } catch (Exception e) {
             ValidExceptionManager.ValidAnalyzeValidException("指定bean不存在该方法 ：public boolean "
-                    + beanAndMethod[1] + "(Object srcObj,Object value)", e);
+                    + beanAndMethod[1] + PARAM, e);
         }
         Class<?> methodResultClass = validMethod.getReturnType();
         if (methodResultClass == null || !"boolean".equals(methodResultClass.toString())) {
             ValidExceptionManager.ValidAnalyzeValidException("指定bean不存在该方法 ：" + bean.getClass()
-                    + " public boolean " + beanAndMethod[1] + "(Object srcObj,Object value)", null);
+                    + " public boolean " + beanAndMethod[1] + PARAM, null);
 
         }
         methodStr =
@@ -51,7 +53,7 @@ public class BeanMethodValid extends BaseValid implements IValid {
     public ValidErrorBean valid(Object srcObj, Object value) {
         try {
             Boolean bool = (Boolean) this.validMethod.invoke(bean, srcObj, value);
-            if (bool.booleanValue() == false) {
+            if (!bool.booleanValue()) {
                 return super.getValidErrorBean(value);
             }
         } catch (Exception e) {

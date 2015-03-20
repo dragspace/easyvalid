@@ -14,11 +14,15 @@ import com.easyvalid.cn.exception.ValidSpringBeanRunException;
  */
 public class ValidExceptionManager {
 
-    public static void ValidAnalyzeValidException(String msg, Exception e) {
-        throw new ValidAnalyzeValidException(msg, e);
+    private ValidExceptionManager() {
+
     }
 
-    public static void ValidSpringBeanRunException(String msg, Exception e) {
-        throw new ValidSpringBeanRunException(msg, e);
+    public static void ValidAnalyzeValidException(String errorMsg, Exception e) {
+        throw new ValidAnalyzeValidException(errorMsg, e);
+    }
+
+    public static void ValidSpringBeanRunException(String errorMsg, Exception e) {
+        throw new ValidSpringBeanRunException(errorMsg, e);
     }
 }

@@ -17,6 +17,9 @@ import com.easyvalid.cn.bean.ValidErrorBean;
 
 public class ValidManager {
 
+    private ValidManager() {
+    }
+
     /**
      * 缓存验证信息
      */
@@ -84,7 +87,7 @@ public class ValidManager {
         try {
             proValue = fav.getGetMethod().invoke(o, new Object[] {});
         } catch (Exception e) {
-            throw new RuntimeException("获取属性值失败", e);
+            ValidExceptionManager.ValidAnalyzeValidException("获取属性值失败", e);
         }
 
         return fav.getIvalid().valid(o, proValue);
