@@ -9,6 +9,7 @@ import com.easyvalid.cn.basevalid.impl.BeanMethodValid;
 import com.easyvalid.cn.basevalid.impl.IsBlankValid;
 import com.easyvalid.cn.basevalid.impl.IsNullValid;
 import com.easyvalid.cn.basevalid.impl.RegexValid;
+import com.easyvalid.cn.util.ValidExceptionManager;
 
 public enum Regular {
 
@@ -37,8 +38,9 @@ public enum Regular {
         @Override
         public IValid getValid(Class<?> clazz, Field field, Valid valid) {
             if (StringUtils.isBlank(valid.value())) {
-                throw new RuntimeException("@valid 的regular属性为REG， 但是他的value 为空, class : "
-                        + clazz.getName() + " 属性：" + field.getName());
+                ValidExceptionManager.ValidAnalyzeValidException(
+                        "@valid 的regular属性为REG， 但是他的value 为空, class : " + clazz.getName() + " 属性："
+                                + field.getName(), null);
             }
             return new RegexValid(clazz, field, valid);
         }

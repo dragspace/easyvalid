@@ -5,12 +5,14 @@ import java.lang.reflect.Method;
 
 import com.easyvalid.cn.annotation.Valid;
 import com.easyvalid.cn.basevalid.IValid;
+import com.easyvalid.cn.util.ValidExceptionManager;
 
 /**
  * 
  * <p>
- * Description:	待验证属性的get方法和验证信息的封装
+ * Description: 待验证属性的get方法和验证信息的封装
  * </p>
+ * 
  * @author xiaoruihu
  * @date 2015-3-20 下午07:02:35
  */
@@ -41,8 +43,8 @@ public class FieldAndIValid {
         try {
             this.getMethod = clazz.getMethod(getMethodName, new Class[] {});
         } catch (Exception e) {
-            throw new RuntimeException("获取get方法失败，class " + clazz.getName() + " 属性 ： "
-                    + field.getName(), e);
+            ValidExceptionManager.ValidAnalyzeValidException("获取get方法失败，class " + clazz.getName()
+                    + " 属性 ： " + field.getName(), e);
         }
         this.order = valid.order();
     }
